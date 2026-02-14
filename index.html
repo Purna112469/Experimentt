@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be Mine? 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg,#f383b0,#ffd6e8);
+            animation: bgMove 10s ease infinite alternate;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgb(255, 219, 219);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255,105,180,0.3);
+            width: 400px;
+            z-index: 10;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .yes { 
+            background:hsl(340, 100%, 65%); 
+            color:white; 
+        }
+        .yes:hover { 
+            transform: scale(1.2) rotate(-2deg);
+            box-shadow: 0 5px 15px rgba(255,77,136,0.6);
+        }
+        .no { 
+            background:#965b5b; 
+        }
+        .no:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 5px 15px rgba(150,91,91,0.6);
+        }
+
+        .emoji { font-size:28px; margin-top:20px; color:#ff4d4d; font-weight:bold; }
+
+        #surprise {
+            display: none;
+            position:absolute;
+            inset:0;
+            background:linear-gradient(135deg,#ff4d88,#ff99c8);
+            color:white;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            text-align:center;
+            z-index:5;
+            overflow:hidden;
+            animation: surpriseBg 12s ease infinite alternate;
+        }
+
+        @keyframes surpriseBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .heart {
+            position:absolute;
+            font-size:25px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(100vh); opacity:1; }
+            to { transform: translateY(-10vh); opacity:0; }
+        }
+
+        .text-anim {
+            animation: popText 1s ease forwards;
+            opacity:0;
+        }
+
+        @keyframes popText {
+            from { transform: scale(0); opacity:0; }
+            to { transform: scale(1); opacity:1; }
+        }
+
+        .emoji-footer {
+            font-size:50px;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Hey, Yes You! 💖</h1>
+    <p>I have a secret… it’s all about you 😍</p>
+    <button class="yes" onclick="goToSurprise()">Yes 💖</button>
+    <button class="no" onclick="angry()">No 😒</button>
+    <div class="emoji" id="emoji"></div>
+</div>
+
+<div id="surprise">
+    <h1 class="text-anim" style="font-size:55px;">You Make My Heart Skip 💖</h1>
+    <p class="text-anim" style="font-size:22px; width:70%; margin-top:10px;">
+        Every day with you is a dream, every moment a sparkle and life feels magical with your smile 😍
+    </p>
+    <div class="emoji-footer">😘😍🥰</div>
+</div>
+
+<audio id="music" src="until.mp3" loop></audio>
+
+<script>
+function angry() {
+    document.getElementById("emoji").innerHTML = "😡 Eita ki bolle?!";
+}
+
+function goToSurprise() {
+    const song = document.getElementById("music");
+    song.play().catch(err => { console.log("Autoplay blocked"); });
+
+    document.querySelector(".card").style.display = "none";
+    const surprise = document.getElementById("surprise");
+    surprise.style.display = "flex";
+
+    for(let i=0;i<30;i++){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(15+Math.random()*25)+"px";
+        heart.style.animationDuration=(3+Math.random()*5)+"s";
+        surprise.appendChild(heart);
+    }
+
+    setTimeout(()=> {
+        document.querySelectorAll('.text-anim').forEach(el => el.style.opacity = 1);
+    }, 100);
+}
+</script>
+
+</body>
+</html>
