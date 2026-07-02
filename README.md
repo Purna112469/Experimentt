@@ -1,2 +1,10 @@
-# Experimentt
-https://purna112469.github.io/Experiment-/
+# Hi, I'm Purna 👋
+Welcome to my GitHub profile.
+
+## About Me
+- 🌱 Learning Web Development
+- 💻 Interested in HTML, CSS & JavaScript
+- 📫 Reach me on GitHub
+
+## Skills
+- HTML
